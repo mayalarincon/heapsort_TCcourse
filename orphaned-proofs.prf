@@ -1,0 +1,127 @@
+(("heapsort"
+  (|teste| 0
+   (|teste-2| "" 4001416849
+    ("" (EXPAND "total_preorder?")
+     (("" (EXPAND "dichotomous?") (("" (POSTPONE) NIL NIL)) NIL)) NIL)
+    NIL SHOSTAK)
+   (|teste-0| "" 4001416612
+    ("" (EXPAND "preorder?")
+     (("" (EXPAND "reflexive?")
+       (("" (EXPAND "transitive?") (("" (POSTPONE) NIL NIL)) NIL)) NIL))
+     NIL)
+    NIL SHOSTAK)
+   (|teste-1| NIL 4001416568 ("" (POSTPONE) NIL NIL) NIL SHOSTAK))
+  |teste-1| NIL 4001416568 ("" (POSTPONE) NIL NIL) NIL SHOSTAK)
+ ("heapsort"
+  (|teste| 0
+   (|teste-2| "" 4001416849
+    ("" (EXPAND "total_preorder?")
+     (("" (EXPAND "dichotomous?") (("" (POSTPONE) NIL NIL)) NIL)) NIL)
+    NIL SHOSTAK)
+   (|teste-0| "" 4001416612
+    ("" (EXPAND "preorder?")
+     (("" (EXPAND "reflexive?")
+       (("" (EXPAND "transitive?") (("" (POSTPONE) NIL NIL)) NIL)) NIL))
+     NIL)
+    NIL SHOSTAK)
+   (|teste-1| NIL 4001416568 ("" (POSTPONE) NIL NIL) NIL SHOSTAK))
+  |teste-0| "" 4001416612
+  ("" (EXPAND "preorder?")
+   (("" (EXPAND "reflexive?")
+     (("" (EXPAND "transitive?") (("" (POSTPONE) NIL NIL)) NIL)) NIL))
+   NIL)
+  NIL SHOSTAK)
+ ("heapsort"
+  (|teste| 0
+   (|teste-2| "" 4001416849
+    ("" (EXPAND "total_preorder?")
+     (("" (EXPAND "dichotomous?") (("" (POSTPONE) NIL NIL)) NIL)) NIL)
+    NIL SHOSTAK)
+   (|teste-0| "" 4001416612
+    ("" (EXPAND "preorder?")
+     (("" (EXPAND "reflexive?")
+       (("" (EXPAND "transitive?") (("" (POSTPONE) NIL NIL)) NIL)) NIL))
+     NIL)
+    NIL SHOSTAK)
+   (|teste-1| NIL 4001416568 ("" (POSTPONE) NIL NIL) NIL SHOSTAK))
+  |teste-2| "" 4001416849
+  ("" (EXPAND "total_preorder?")
+   (("" (EXPAND "dichotomous?") (("" (POSTPONE) NIL NIL)) NIL)) NIL)
+  NIL SHOSTAK)
+ ("heapsort"
+  (|teste| 0
+   (|teste-2| "" 4001416849
+    ("" (EXPAND "total_preorder?")
+     (("" (EXPAND "dichotomous?") (("" (POSTPONE) NIL NIL)) NIL)) NIL)
+    NIL SHOSTAK)
+   (|teste-0| "" 4001416612
+    ("" (EXPAND "preorder?")
+     (("" (EXPAND "reflexive?")
+       (("" (EXPAND "transitive?") (("" (POSTPONE) NIL NIL)) NIL)) NIL))
+     NIL)
+    NIL SHOSTAK)
+   (|teste-1| NIL 4001416568 ("" (POSTPONE) NIL NIL) NIL SHOSTAK))
+  . 0))(("heapsort"
+  (|teste| 0
+   (|teste-2| "" 4001416849
+    ("" (EXPAND "total_preorder?")
+     (("" (EXPAND "dichotomous?") (("" (POSTPONE) NIL NIL)) NIL)) NIL)
+    NIL SHOSTAK)
+   (|teste-0| "" 4001416612
+    ("" (EXPAND "preorder?")
+     (("" (EXPAND "reflexive?")
+       (("" (EXPAND "transitive?") (("" (POSTPONE) NIL NIL)) NIL)) NIL))
+     NIL)
+    NIL SHOSTAK)
+   (|teste-1| NIL 4001416568 ("" (POSTPONE) NIL NIL) NIL SHOSTAK))
+  |teste-1| NIL 4001416568 ("" (POSTPONE) NIL NIL) NIL SHOSTAK)
+ ("heapsort"
+  (|teste| 0
+   (|teste-2| "" 4001416849
+    ("" (EXPAND "total_preorder?")
+     (("" (EXPAND "dichotomous?") (("" (POSTPONE) NIL NIL)) NIL)) NIL)
+    NIL SHOSTAK)
+   (|teste-0| "" 4001416612
+    ("" (EXPAND "preorder?")
+     (("" (EXPAND "reflexive?")
+       (("" (EXPAND "transitive?") (("" (POSTPONE) NIL NIL)) NIL)) NIL))
+     NIL)
+    NIL SHOSTAK)
+   (|teste-1| NIL 4001416568 ("" (POSTPONE) NIL NIL) NIL SHOSTAK))
+  |teste-0| "" 4001416612
+  ("" (EXPAND "preorder?")
+   (("" (EXPAND "reflexive?")
+     (("" (EXPAND "transitive?") (("" (POSTPONE) NIL NIL)) NIL)) NIL))
+   NIL)
+  NIL SHOSTAK)
+ ("heapsort"
+  (|teste| 0
+   (|teste-2| "" 4001416849
+    ("" (EXPAND "total_preorder?")
+     (("" (EXPAND "dichotomous?") (("" (POSTPONE) NIL NIL)) NIL)) NIL)
+    NIL SHOSTAK)
+   (|teste-0| "" 4001416612
+    ("" (EXPAND "preorder?")
+     (("" (EXPAND "reflexive?")
+       (("" (EXPAND "transitive?") (("" (POSTPONE) NIL NIL)) NIL)) NIL))
+     NIL)
+    NIL SHOSTAK)
+   (|teste-1| NIL 4001416568 ("" (POSTPONE) NIL NIL) NIL SHOSTAK))
+  |teste-2| "" 4001416849
+  ("" (EXPAND "total_preorder?")
+   (("" (EXPAND "dichotomous?") (("" (POSTPONE) NIL NIL)) NIL)) NIL)
+  NIL SHOSTAK)
+ ("heapsort"
+  (|teste| 0
+   (|teste-2| "" 4001416849
+    ("" (EXPAND "total_preorder?")
+     (("" (EXPAND "dichotomous?") (("" (POSTPONE) NIL NIL)) NIL)) NIL)
+    NIL SHOSTAK)
+   (|teste-0| "" 4001416612
+    ("" (EXPAND "preorder?")
+     (("" (EXPAND "reflexive?")
+       (("" (EXPAND "transitive?") (("" (POSTPONE) NIL NIL)) NIL)) NIL))
+     NIL)
+    NIL SHOSTAK)
+   (|teste-1| NIL 4001416568 ("" (POSTPONE) NIL NIL) NIL SHOSTAK))
+  . 0))

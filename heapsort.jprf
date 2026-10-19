@@ -1,0 +1,890 @@
+{
+ "heapsort.teste": [
+  {
+   "info": {
+    "theory": "heapsort",
+    "formula": "teste",
+    "status": "unfinished",
+    "prover": "PVS 8.1 (SBCL 2.4.8)",
+    "shasum": "2f681b5f875b1b79a44b5c8c2499466d64c9764729c6a248ae085bf958fddcbb"
+   },
+   "origin": ".prf",
+   "proofTree": {
+    "branch": "",
+    "name": "teste",
+    "type": "root",
+    "rules": [
+     {
+      "branch": "",
+      "name": "(expand \"total_preorder?\")",
+      "type": "proof-command",
+      "rules": []
+     },
+     {
+      "branch": "",
+      "name": "(expand \"dichotomous?\")",
+      "type": "proof-command",
+      "rules": []
+     },
+     {
+      "branch": "",
+      "name": "(EXPAND \"preorder?\")",
+      "type": "proof-command",
+      "rules": []
+     },
+     {
+      "branch": "",
+      "name": "(EXPAND \"reflexive?\")",
+      "type": "proof-command",
+      "rules": []
+     },
+     {
+      "branch": "",
+      "name": "(EXPAND \"transitive?\")",
+      "type": "proof-command",
+      "rules": []
+     },
+     {
+      "branch": "",
+      "name": "(POSTPONE)",
+      "type": "proof-command",
+      "rules": []
+     }
+    ]
+   }
+  }
+ ],
+ "heapsort.sink_interval_children_stable": [
+  {
+   "info": {
+    "theory": "heapsort",
+    "formula": "sink_interval_children_stable",
+    "status": "unchecked",
+    "prover": "PVS 8.1 (SBCL 2.4.8)",
+    "shasum": "34241ee2f501703eabe379919b48bfb75e8e877b35e243ff8fbe5a7adf78be68"
+   },
+   "origin": ".prf",
+   "proofTree": {
+    "branch": "",
+    "name": "sink_interval_children_stable",
+    "type": "root",
+    "rules": [
+     {
+      "branch": "",
+      "name": "(EXPAND \"finseq_appl\")",
+      "type": "proof-command",
+      "rules": []
+     },
+     {
+      "branch": "",
+      "name": "(SKEEP)",
+      "type": "proof-command",
+      "rules": []
+     },
+     {
+      "branch": "",
+      "name": "(PROP)",
+      "type": "proof-command",
+      "rules": [
+       {
+        "branch": "1",
+        "name": "(1)",
+        "type": "proof-branch",
+        "rules": [
+         {
+          "branch": "1",
+          "name": "(EXPAND \"is_parent\")",
+          "type": "proof-command",
+          "rules": []
+         },
+         {
+          "branch": "1",
+          "name": "(ASSERT)",
+          "type": "proof-command",
+          "rules": []
+         }
+        ]
+       },
+       {
+        "branch": "2",
+        "name": "(2)",
+        "type": "proof-branch",
+        "rules": [
+         {
+          "branch": "2",
+          "name": "(EXPAND \"is_parent\")",
+          "type": "proof-command",
+          "rules": []
+         },
+         {
+          "branch": "2",
+          "name": "(ASSERT)",
+          "type": "proof-command",
+          "rules": []
+         },
+         {
+          "branch": "2",
+          "name": "(HIDE 2)",
+          "type": "proof-command",
+          "rules": []
+         },
+         {
+          "branch": "2",
+          "name": "(TYPEPRED \"i\" \"k\" \"n\")",
+          "type": "proof-command",
+          "rules": []
+         },
+         {
+          "branch": "2",
+          "name": "(expand \"ind_parent\")",
+          "type": "proof-command",
+          "rules": []
+         },
+         {
+          "branch": "2",
+          "name": "(EXPAND \"sink\")",
+          "type": "proof-command",
+          "rules": []
+         },
+         {
+          "branch": "2",
+          "name": "(EXPAND \"finseq_appl\")",
+          "type": "proof-command",
+          "rules": []
+         },
+         {
+          "branch": "2",
+          "name": "(LIFT-IF)",
+          "type": "proof-command",
+          "rules": []
+         },
+         {
+          "branch": "2",
+          "name": "(PROP)",
+          "type": "proof-command",
+          "rules": []
+         },
+         {
+          "branch": "2",
+          "name": "(LEMMA \"sink_stable\")",
+          "type": "proof-command",
+          "rules": []
+         },
+         {
+          "branch": "2",
+          "name": "(EXPAND \"finseq_appl\")",
+          "type": "proof-command",
+          "rules": []
+         },
+         {
+          "branch": "2",
+          "name": "(INST -1 \"swap(h)(i, ind_gc(h)(n, i))\" \"ind_gc(h)(n, i)\" \"n\" \"ind_lc(k)\")",
+          "type": "proof-command",
+          "rules": [
+           {
+            "branch": "2.1",
+            "name": "(2.1)",
+            "type": "proof-branch",
+            "rules": [
+             {
+              "branch": "2.1",
+              "name": "(REPLACE -1 1 RL)",
+              "type": "proof-command",
+              "rules": []
+             },
+             {
+              "branch": "2.1",
+              "name": "(HIDE -1)",
+              "type": "proof-command",
+              "rules": []
+             },
+             {
+              "branch": "2.1",
+              "name": "(EXPAND \"ind_gc\" 1)",
+              "type": "proof-command",
+              "rules": []
+             },
+             {
+              "branch": "2.1",
+              "name": "(LIFT-IF)",
+              "type": "proof-command",
+              "rules": []
+             },
+             {
+              "branch": "2.1",
+              "name": "(PROP)",
+              "type": "proof-command",
+              "rules": [
+               {
+                "branch": "2.1.1",
+                "name": "(2.1.1)",
+                "type": "proof-branch",
+                "rules": [
+                 {
+                  "branch": "2.1.1",
+                  "name": "(EXPAND \"swap\")",
+                  "type": "proof-command",
+                  "rules": []
+                 },
+                 {
+                  "branch": "2.1.1",
+                  "name": "(EXPAND \"finseq_appl\")",
+                  "type": "proof-command",
+                  "rules": []
+                 },
+                 {
+                  "branch": "2.1.1",
+                  "name": "(LIFT-IF)",
+                  "type": "proof-command",
+                  "rules": []
+                 },
+                 {
+                  "branch": "2.1.1",
+                  "name": "(PROP)",
+                  "type": "proof-command",
+                  "rules": [
+                   {
+                    "branch": "2.1.1.1",
+                    "name": "(2.1.1.1)",
+                    "type": "proof-branch",
+                    "rules": [
+                     {
+                      "branch": "2.1.1.1",
+                      "name": "(GRIND)",
+                      "type": "proof-command",
+                      "rules": []
+                     }
+                    ]
+                   },
+                   {
+                    "branch": "2.1.1.2",
+                    "name": "(2.1.1.2)",
+                    "type": "proof-branch",
+                    "rules": [
+                     {
+                      "branch": "2.1.1.2",
+                      "name": "(GRIND)",
+                      "type": "proof-command",
+                      "rules": []
+                     }
+                    ]
+                   }
+                  ]
+                 }
+                ]
+               },
+               {
+                "branch": "2.1.2",
+                "name": "(2.1.2)",
+                "type": "proof-branch",
+                "rules": [
+                 {
+                  "branch": "2.1.2",
+                  "name": "(GRIND)",
+                  "type": "proof-command",
+                  "rules": []
+                 }
+                ]
+               },
+               {
+                "branch": "2.1.3",
+                "name": "(2.1.3)",
+                "type": "proof-branch",
+                "rules": [
+                 {
+                  "branch": "2.1.3",
+                  "name": "(GRIND)",
+                  "type": "proof-command",
+                  "rules": []
+                 }
+                ]
+               }
+              ]
+             }
+            ]
+           },
+           {
+            "branch": "2.2",
+            "name": "(2.2)",
+            "type": "proof-branch",
+            "rules": [
+             {
+              "branch": "2.2",
+              "name": "(HIDE 2)",
+              "type": "proof-command",
+              "rules": []
+             },
+             {
+              "branch": "2.2",
+              "name": "(GRIND)",
+              "type": "proof-command",
+              "rules": []
+             }
+            ]
+           },
+           {
+            "branch": "2.3",
+            "name": "(2.3)",
+            "type": "proof-branch",
+            "rules": [
+             {
+              "branch": "2.3",
+              "name": "(HIDE 2)",
+              "type": "proof-command",
+              "rules": []
+             },
+             {
+              "branch": "2.3",
+              "name": "(GRIND)",
+              "type": "proof-command",
+              "rules": []
+             }
+            ]
+           }
+          ]
+         }
+        ]
+       },
+       {
+        "branch": "3",
+        "name": "(3)",
+        "type": "proof-branch",
+        "rules": [
+         {
+          "branch": "3",
+          "name": "(EXPAND \"is_parent\")",
+          "type": "proof-command",
+          "rules": []
+         },
+         {
+          "branch": "3",
+          "name": "(ASSERT)",
+          "type": "proof-command",
+          "rules": []
+         },
+         {
+          "branch": "3",
+          "name": "(HIDE 2)",
+          "type": "proof-command",
+          "rules": []
+         },
+         {
+          "branch": "3",
+          "name": "(TYPEPRED \"i\" \"n\" \"k\")",
+          "type": "proof-command",
+          "rules": []
+         },
+         {
+          "branch": "3",
+          "name": "(EXPAND \"sink\")",
+          "type": "proof-command",
+          "rules": []
+         },
+         {
+          "branch": "3",
+          "name": "(EXPAND \"finseq_appl\")",
+          "type": "proof-command",
+          "rules": []
+         },
+         {
+          "branch": "3",
+          "name": "(LIFT-IF)",
+          "type": "proof-command",
+          "rules": []
+         },
+         {
+          "branch": "3",
+          "name": "(PROP)",
+          "type": "proof-command",
+          "rules": []
+         },
+         {
+          "branch": "3",
+          "name": "(LEMMA \"sink_stable\")",
+          "type": "proof-command",
+          "rules": []
+         },
+         {
+          "branch": "3",
+          "name": "(EXPAND \"finseq_appl\")",
+          "type": "proof-command",
+          "rules": []
+         },
+         {
+          "branch": "3",
+          "name": "(INST -1 \"swap(h)(i, ind_gc(h)(n, i))\" \"ind_gc(h)(n, i)\" \"n\" \"ind_rc(k)\")",
+          "type": "proof-command",
+          "rules": [
+           {
+            "branch": "3.1",
+            "name": "(3.1)",
+            "type": "proof-branch",
+            "rules": [
+             {
+              "branch": "3.1",
+              "name": "(REPLACE -1 1 RL)",
+              "type": "proof-command",
+              "rules": []
+             },
+             {
+              "branch": "3.1",
+              "name": "(HIDE -1)",
+              "type": "proof-command",
+              "rules": []
+             },
+             {
+              "branch": "3.1",
+              "name": "(GRIND)",
+              "type": "proof-command",
+              "rules": []
+             }
+            ]
+           },
+           {
+            "branch": "3.2",
+            "name": "(3.2)",
+            "type": "proof-branch",
+            "rules": [
+             {
+              "branch": "3.2",
+              "name": "(HIDE 2)",
+              "type": "proof-command",
+              "rules": []
+             },
+             {
+              "branch": "3.2",
+              "name": "(GRIND)",
+              "type": "proof-command",
+              "rules": []
+             }
+            ]
+           },
+           {
+            "branch": "3.3",
+            "name": "(3.3)",
+            "type": "proof-branch",
+            "rules": [
+             {
+              "branch": "3.3",
+              "name": "(HIDE 2)",
+              "type": "proof-command",
+              "rules": []
+             },
+             {
+              "branch": "3.3",
+              "name": "(GRIND)",
+              "type": "proof-command",
+              "rules": []
+             }
+            ]
+           }
+          ]
+         }
+        ]
+       },
+       {
+        "branch": "4",
+        "name": "(4)",
+        "type": "proof-branch",
+        "rules": [
+         {
+          "branch": "4",
+          "name": "(EXPAND \"is_parent\")",
+          "type": "proof-command",
+          "rules": []
+         },
+         {
+          "branch": "4",
+          "name": "(ASSERT)",
+          "type": "proof-command",
+          "rules": []
+         },
+         {
+          "branch": "4",
+          "name": "(HIDE 1)",
+          "type": "proof-command",
+          "rules": []
+         },
+         {
+          "branch": "4",
+          "name": "(GRIND)",
+          "type": "proof-command",
+          "rules": []
+         }
+        ]
+       },
+       {
+        "branch": "5",
+        "name": "(5)",
+        "type": "proof-branch",
+        "rules": [
+         {
+          "branch": "5",
+          "name": "(EXPAND \"is_parent\")",
+          "type": "proof-command",
+          "rules": []
+         },
+         {
+          "branch": "5",
+          "name": "(SPLIT)",
+          "type": "proof-command",
+          "rules": [
+           {
+            "branch": "5.1",
+            "name": "(5.1)",
+            "type": "proof-branch",
+            "rules": [
+             {
+              "branch": "5.1",
+              "name": "(HIDE 2)",
+              "type": "proof-command",
+              "rules": []
+             },
+             {
+              "branch": "5.1",
+              "name": "(TYPEPRED \"i\" \"n\" \"k\")",
+              "type": "proof-command",
+              "rules": []
+             },
+             {
+              "branch": "5.1",
+              "name": "(EXPAND \"sink\")",
+              "type": "proof-command",
+              "rules": []
+             },
+             {
+              "branch": "5.1",
+              "name": "(EXPAND \"finseq_appl\")",
+              "type": "proof-command",
+              "rules": []
+             },
+             {
+              "branch": "5.1",
+              "name": "(LIFT-IF)",
+              "type": "proof-command",
+              "rules": []
+             },
+             {
+              "branch": "5.1",
+              "name": "(PROP)",
+              "type": "proof-command",
+              "rules": []
+             },
+             {
+              "branch": "5.1",
+              "name": "(LEMMA \"sink_stable\")",
+              "type": "proof-command",
+              "rules": []
+             },
+             {
+              "branch": "5.1",
+              "name": "(EXPAND \"finseq_appl\")",
+              "type": "proof-command",
+              "rules": []
+             },
+             {
+              "branch": "5.1",
+              "name": "(INST?)",
+              "type": "proof-command",
+              "rules": [
+               {
+                "branch": "5.1.1",
+                "name": "(5.1.1)",
+                "type": "proof-branch",
+                "rules": [
+                 {
+                  "branch": "5.1.1",
+                  "name": "(REPLACE -1 1 RL)",
+                  "type": "proof-command",
+                  "rules": []
+                 },
+                 {
+                  "branch": "5.1.1",
+                  "name": "(HIDE -1)",
+                  "type": "proof-command",
+                  "rules": []
+                 },
+                 {
+                  "branch": "5.1.1",
+                  "name": "(GRIND)",
+                  "type": "proof-command",
+                  "rules": []
+                 }
+                ]
+               },
+               {
+                "branch": "5.1.2",
+                "name": "(5.1.2)",
+                "type": "proof-branch",
+                "rules": [
+                 {
+                  "branch": "5.1.2",
+                  "name": "(HIDE 2)",
+                  "type": "proof-command",
+                  "rules": []
+                 },
+                 {
+                  "branch": "5.1.2",
+                  "name": "(GRIND)",
+                  "type": "proof-command",
+                  "rules": []
+                 }
+                ]
+               },
+               {
+                "branch": "5.1.3",
+                "name": "(5.1.3)",
+                "type": "proof-branch",
+                "rules": [
+                 {
+                  "branch": "5.1.3",
+                  "name": "(HIDE -1 2)",
+                  "type": "proof-command",
+                  "rules": []
+                 },
+                 {
+                  "branch": "5.1.3",
+                  "name": "(GRIND)",
+                  "type": "proof-command",
+                  "rules": []
+                 }
+                ]
+               }
+              ]
+             }
+            ]
+           },
+           {
+            "branch": "5.2",
+            "name": "(5.2)",
+            "type": "proof-branch",
+            "rules": [
+             {
+              "branch": "5.2",
+              "name": "(HIDE 1)",
+              "type": "proof-command",
+              "rules": []
+             },
+             {
+              "branch": "5.2",
+              "name": "(GRIND)",
+              "type": "proof-command",
+              "rules": []
+             }
+            ]
+           }
+          ]
+         }
+        ]
+       },
+       {
+        "branch": "6",
+        "name": "(6)",
+        "type": "proof-branch",
+        "rules": [
+         {
+          "branch": "6",
+          "name": "(EXPAND \"is_parent\")",
+          "type": "proof-command",
+          "rules": []
+         },
+         {
+          "branch": "6",
+          "name": "(SPLIT)",
+          "type": "proof-command",
+          "rules": [
+           {
+            "branch": "6.1",
+            "name": "(6.1)",
+            "type": "proof-branch",
+            "rules": [
+             {
+              "branch": "6.1",
+              "name": "(EXPAND \"sink\")",
+              "type": "proof-command",
+              "rules": []
+             },
+             {
+              "branch": "6.1",
+              "name": "(EXPAND \"finseq_appl\")",
+              "type": "proof-command",
+              "rules": []
+             },
+             {
+              "branch": "6.1",
+              "name": "(LIFT-IF)",
+              "type": "proof-command",
+              "rules": []
+             },
+             {
+              "branch": "6.1",
+              "name": "(PROP)",
+              "type": "proof-command",
+              "rules": []
+             },
+             {
+              "branch": "6.1",
+              "name": "(LEMMA \"sink_stable\")",
+              "type": "proof-command",
+              "rules": []
+             },
+             {
+              "branch": "6.1",
+              "name": "(EXPAND \"finseq_appl\")",
+              "type": "proof-command",
+              "rules": []
+             },
+             {
+              "branch": "6.1",
+              "name": "(INST-CP -1 \"swap(h)(i, ind_gc(h)(n, i))\" \"ind_gc(h)(n, i)\" \"n\" \"ind_lc(k)\")",
+              "type": "proof-command",
+              "rules": [
+               {
+                "branch": "6.1.1",
+                "name": "(6.1.1)",
+                "type": "proof-branch",
+                "rules": [
+                 {
+                  "branch": "6.1.1",
+                  "name": "(INST -1 \"swap(h)(i, ind_gc(h)(n, i))\" \"ind_gc(h)(n, i)\" \"n\" \"ind_rc(k)\")",
+                  "type": "proof-command",
+                  "rules": [
+                   {
+                    "branch": "6.1.1.1",
+                    "name": "(6.1.1.1)",
+                    "type": "proof-branch",
+                    "rules": [
+                     {
+                      "branch": "6.1.1.1",
+                      "name": "(REPLACE -1 3 RL)",
+                      "type": "proof-command",
+                      "rules": []
+                     },
+                     {
+                      "branch": "6.1.1.1",
+                      "name": "(REPLACE -2 1 RL)",
+                      "type": "proof-command",
+                      "rules": []
+                     },
+                     {
+                      "branch": "6.1.1.1",
+                      "name": "(HIDE -1 -2)",
+                      "type": "proof-command",
+                      "rules": []
+                     },
+                     {
+                      "branch": "6.1.1.1",
+                      "name": "(GRIND)",
+                      "type": "proof-command",
+                      "rules": []
+                     }
+                    ]
+                   },
+                   {
+                    "branch": "6.1.1.2",
+                    "name": "(6.1.1.2)",
+                    "type": "proof-branch",
+                    "rules": [
+                     {
+                      "branch": "6.1.1.2",
+                      "name": "(HIDE 2 4)",
+                      "type": "proof-command",
+                      "rules": []
+                     },
+                     {
+                      "branch": "6.1.1.2",
+                      "name": "(GRIND)",
+                      "type": "proof-command",
+                      "rules": []
+                     }
+                    ]
+                   },
+                   {
+                    "branch": "6.1.1.3",
+                    "name": "(6.1.1.3)",
+                    "type": "proof-branch",
+                    "rules": [
+                     {
+                      "branch": "6.1.1.3",
+                      "name": "(HIDE 2 4)",
+                      "type": "proof-command",
+                      "rules": []
+                     },
+                     {
+                      "branch": "6.1.1.3",
+                      "name": "(GRIND)",
+                      "type": "proof-command",
+                      "rules": []
+                     }
+                    ]
+                   }
+                  ]
+                 }
+                ]
+               },
+               {
+                "branch": "6.1.2",
+                "name": "(6.1.2)",
+                "type": "proof-branch",
+                "rules": [
+                 {
+                  "branch": "6.1.2",
+                  "name": "(HIDE 2 4)",
+                  "type": "proof-command",
+                  "rules": []
+                 },
+                 {
+                  "branch": "6.1.2",
+                  "name": "(GRIND)",
+                  "type": "proof-command",
+                  "rules": []
+                 }
+                ]
+               },
+               {
+                "branch": "6.1.3",
+                "name": "(6.1.3)",
+                "type": "proof-branch",
+                "rules": [
+                 {
+                  "branch": "6.1.3",
+                  "name": "(HIDE 2 4)",
+                  "type": "proof-command",
+                  "rules": []
+                 },
+                 {
+                  "branch": "6.1.3",
+                  "name": "(GRIND)",
+                  "type": "proof-command",
+                  "rules": []
+                 }
+                ]
+               }
+              ]
+             }
+            ]
+           },
+           {
+            "branch": "6.2",
+            "name": "(6.2)",
+            "type": "proof-branch",
+            "rules": [
+             {
+              "branch": "6.2",
+              "name": "(GRIND)",
+              "type": "proof-command",
+              "rules": []
+             }
+            ]
+           }
+          ]
+         }
+        ]
+       }
+      ]
+     }
+    ]
+   }
+  }
+ ]
+}

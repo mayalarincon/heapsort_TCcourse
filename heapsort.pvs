@@ -12,15 +12,14 @@
 %%% Last modification:  May 06, 2020
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-heapsort[T : TYPE, (IMPORTING total_preorder) leq : (total_preorder?[T])] : THEORY
+heapsort[T : TYPE, (IMPORTING sorting@total_preorder) leq : (total_preorder?[T])] : THEORY
 
 BEGIN
 
-IMPORTING sorting_seq[T, leq], structures@seq_extras[T]
+IMPORTING sorting@sorting_seq[T, leq], structures@seq_extras[T]
 
 h : VAR finite_sequence[T]   % This is the Data Structure for heaps
 i,j : VAR nat  
-
 
 % Sink function for the ith node in the partial heap from 0 to n
 sink(h)((i : below[length(h)]), (n : below[length(h)] | n >= i)) :  RECURSIVE finite_sequence[T] = 
