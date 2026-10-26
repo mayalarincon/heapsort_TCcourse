@@ -124,4 +124,44 @@
      NIL)
     NIL SHOSTAK)
    (|teste-1| NIL 4001416568 ("" (POSTPONE) NIL NIL) NIL SHOSTAK))
+  . 0))(("heapsort"
+  (|sink_permutes_TCC1| 0
+   (|sink_permutes_TCC1-1| NIL 3651506972 ("" (SUBTYPE-TCC) NIL NIL) NIL NIL
+    (|sink_permutes| SUBTYPE "i" "below[length(h)]")))
+  |sink_permutes_TCC1-1| NIL 3651506972 ("" (SUBTYPE-TCC) NIL NIL) NIL NIL
+  (|sink_permutes| SUBTYPE "i" "below[length(h)]"))
+ ("heapsort"
+  (|sink_permutes_TCC1| 0
+   (|sink_permutes_TCC1-1| NIL 3651506972 ("" (SUBTYPE-TCC) NIL NIL) NIL NIL
+    (|sink_permutes| SUBTYPE "i" "below[length(h)]")))
+  . 0))(("heapsort"
+  (|sink_permutes_TCC1| 0
+   (|sink_permutes_TCC1-1| NIL 3651506972 ("" (SUBTYPE-TCC) NIL NIL) NIL NIL
+    (|sink_permutes| SUBTYPE "i" "below[length(h)]")))
+  |sink_permutes_TCC1-1| NIL 3651506972 ("" (SUBTYPE-TCC) NIL NIL) NIL NIL
+  (|sink_permutes| SUBTYPE "i" "below[length(h)]"))
+ ("heapsort"
+  (|sink_permutes_TCC1| 0
+   (|sink_permutes_TCC1-1| NIL 3651506972 ("" (SUBTYPE-TCC) NIL NIL) NIL NIL
+    (|sink_permutes| SUBTYPE "i" "below[length(h)]")))
+  . 0))(("heapsort"
+  (|sink_permutes_TCC1| 0
+   (|sink_permutes_TCC1-1| NIL 3651506972 ("" (SUBTYPE-TCC) NIL NIL) NIL NIL
+    (|sink_permutes| SUBTYPE "i" "below[length(h)]")))
+  |sink_permutes_TCC1-1| NIL 3651506972 ("" (SUBTYPE-TCC) NIL NIL) NIL NIL
+  (|sink_permutes| SUBTYPE "i" "below[length(h)]"))
+ ("heapsort"
+  (|sink_permutes_TCC1| 0
+   (|sink_permutes_TCC1-1| NIL 3651506972 ("" (SUBTYPE-TCC) NIL NIL) NIL NIL
+    (|sink_permutes| SUBTYPE "i" "below[length(h)]")))
+  . 0))(("heapsort"
+  (|sink_permutes_TCC1| 0
+   (|sink_permutes_TCC1-1| NIL 3651506972 ("" (SUBTYPE-TCC) NIL NIL) NIL NIL
+    (|sink_permutes| SUBTYPE "i" "below[length(h)]")))
+  |sink_permutes_TCC1-1| NIL 3651506972 ("" (SUBTYPE-TCC) NIL NIL) NIL NIL
+  (|sink_permutes| SUBTYPE "i" "below[length(h)]"))
+ ("heapsort"
+  (|sink_permutes_TCC1| 0
+   (|sink_permutes_TCC1-1| NIL 3651506972 ("" (SUBTYPE-TCC) NIL NIL) NIL NIL
+    (|sink_permutes| SUBTYPE "i" "below[length(h)]")))
   . 0))

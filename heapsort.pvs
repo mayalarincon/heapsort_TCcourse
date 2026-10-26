@@ -1,15 +1,22 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%% Computational Logic A & D / PROJECT SECOND SEMESTER 2015 
-%%%%% Based on the poof techniques applied to formalize 
+%%%%% Computational Logic A & D / PROJECT SECOND SEMESTER 2015
+%%%%% Based on the poof techniques applied to formalize
 %%%%% correctness of sorting algorithms verify correctness
 %%%%% of heap sort.
-%%%%% The data structure used is finite sequences. 
+%%%%% The data structure used is finite sequences.
 %%%%% Theorems for finite sequences in the prelude library
 %%%%% as well as in the theory structures@seq_extras might
-%%%%% be useful. 
+%%%%% be useful.
 %%% Grupo de Teoria da Computacao, Universidade de Brasilia
 %%% M. Ayala-Rincon, A. A. Almeida, Flavio L.C. de Moura
-%%% Last modification:  May 06, 2020
+%%% Last modification:  October 21, 2026
+%%%   - Theory reorganized in sections, one per function
+%%%     (sink, heapify, heapsort_aux, heapsort). In each section
+%%%     the definition is followed by its basic properties
+%%%     (length, permutations), then by the heap/sorting
+%%%     properties and, at the end, the main correctness result.
+%%%   - New proofs of sink_permutes and sink_length.
+%%% Previous modification:  May 06, 2020
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 heapsort[T : TYPE, (IMPORTING sorting@total_preorder) leq : (total_preorder?[T])] : THEORY
@@ -19,57 +26,108 @@ BEGIN
 IMPORTING sorting@sorting_seq[T, leq], structures@seq_extras[T]
 
 h : VAR finite_sequence[T]   % This is the Data Structure for heaps
-i,j : VAR nat  
+i,j : VAR nat
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%% 1. SINK
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 % Sink function for the ith node in the partial heap from 0 to n
-sink(h)((i : below[length(h)]), (n : below[length(h)] | n >= i)) :  RECURSIVE finite_sequence[T] = 
+sink(h)((i : below[length(h)]), (n : below[length(h)] | n >= i)) :  RECURSIVE finite_sequence[T] =
   IF i > floor((n+1)/2) - 1 THEN h
-  ELSE LET k = ind_gc(h)(n,i) IN 
-        IF gt(h(k), h(i)) THEN sink(swap(h)(i,k))(k,n)    
+  ELSE LET k = ind_gc(h)(n,i) IN
+        IF gt(h(k), h(i)) THEN sink(swap(h)(i,k))(k,n)
         ELSE h ENDIF
 ENDIF
-MEASURE n - i  
+MEASURE n - i
 
-% Sink buils permutations
-sink_permutes  : LEMMA  
-FORALL (h,  (i : nat),  (n : nat |  n < length(h) AND n >= i)) : 
-permutations(h, sink(h)(i,n)) 
+%%% 1.1 Basic properties: sink preserves length and builds permutations
 
-sink_length : LEMMA 
-  FORALL (h,  (i : nat),  (n : nat |  n < length(h) AND n >= i)) : 
+sink_length : LEMMA
+  FORALL (h,  (i : nat),  (n : nat |  n < length(h) AND n >= i)) :
 length(sink(h)(i,n)) = length(h)
 
+sink_permutes  : LEMMA
+FORALL (h,  (i : nat),  (n : nat |  n < length(h) AND n >= i)) :
+permutations(h, sink(h)(i,n))
+
+%%% 1.2 Stability: positions outside [i,n] are unchanged, and keys
+%%%     inside [i,n] come from [i,n]
+
 sink_stable  : LEMMA
-FORALL (h,  (i : nat),  (n : nat |  n < length(h) AND n >= i), (k : below[length(h)] | k < i OR k > n)) : 
-h(k) =  (sink(h)(i,n))(k) 
+FORALL (h,  (i : nat),  (n : nat |  n < length(h) AND n >= i), (k : below[length(h)] | k < i OR k > n)) :
+h(k) =  (sink(h)(i,n))(k)
 
 sink_in_stable : LEMMA
 FORALL (h,  (i : nat),  (n : nat |  n < length(h) AND n >= i), (k : below[length(h)] | k >= i AND k <= n)) : EXISTS (l : below[length(h)] | l >= i AND l <= n) :
-h(l) =  (sink(h)(i,n))(k) 
+h(l) =  (sink(h)(i,n))(k)
 
 sink_interval_children_stable : COROLLARY
 FORALL (h,  (i : posnat),  (n : nat |  n < length(h) AND n >= i), (k : below[length(h)] | k < i AND k > ind_parent(i))) :
 LET sh = sink(h)(i,n) IN
- NOT is_parent(h)(n,k) OR  
-     (one_child(h)(n,k) AND h(ind_lc(k)) =  sh(ind_lc(k))) OR  
-     (both_childs(h)(n,k) AND    
-      h(ind_lc(k)) = sh(ind_lc(k)) AND  
-      h(ind_rc(k)) =  sh(ind_rc(k))) 
+ NOT is_parent(h)(n,k) OR
+     (one_child(h)(n,k) AND h(ind_lc(k)) =  sh(ind_lc(k))) OR
+     (both_childs(h)(n,k) AND
+      h(ind_lc(k)) = sh(ind_lc(k)) AND
+      h(ind_rc(k)) =  sh(ind_rc(k)))
 
+%%% 1.3 Heap invariant
 % This key lemma establishes that the sink over a heap gives as result another heap.
 % This property is a necessary invariant during the heapsort to guarantee that in
 % each recursive step one has a heap and, consequently, the greatest key is in the
 % root of that heap.
 is_heap_from_to : LEMMA
- FORALL (h, (i : nat), (j:below[length(h)] | i < j)) : 
-      is_p_heap(h)(i+1,j)  => 
-             is_p_heap(sink(h)(i,j))(i,j) 
+ FORALL (h, (i : nat), (j:below[length(h)] | i < j)) :
+      is_p_heap(h)(i+1,j)  =>
+             is_p_heap(sink(h)(i,j))(i,j)
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%% 2. HEAPIFY
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 % Heapification function
-heapify(h)(i : nat | i <= floor(length(h)/2) - 1) :  RECURSIVE finite_sequence[T] = 
+%
+% WHAT IT DOES. heapify(h)(i) rearranges the keys of h so that the
+% result is a (max-)heap on the whole sequence, i.e., every node k
+% with children in [0, length(h)-1] satisfies
+%      h(k) >= h(ind_lc(k))  and  h(k) >= h(ind_rc(k)),
+% where ind_lc(k) = 2k+1 and ind_rc(k) = 2k+2. The heap is built by
+% exchanging keys only, so the result is a permutation of h
+% (heapify_permutes) of the same length (heapify_length).
+%
+% HOW IT DOES IT (bottom-up construction, Williams/Floyd). Nodes
+% k > floor(length(h)/2) - 1 have no children: they are leaves and,
+% trivially, roots of heaps. heapify is therefore called with
+% i = floor(length(h)/2) - 1, the last node with at least one child
+% (the parent of the last position), and it visits the nodes
+% i, i-1, ..., 1, 0 in decreasing order. At each node it applies
+%      sink(h)(i, length(h) - 1),
+% which lets the key at position i descend, swapping it with its
+% greatest child, until it is not smaller than its children or it
+% reaches a leaf. The recursion continues with i-1 on the sequence
+% returned by sink; the last step (i = 0) sinks the root.
+%
+% WHY IT WORKS. The invariant is that, before sinking node i, all
+% nodes after i are already roots of heaps: is_p_heap(h)(i+1, n),
+% with n = length(h) - 1. The key lemma is_heap_from_to guarantees
+% that sinking node i extends this to is_p_heap(sink(h)(i,n))(i, n).
+% Initially the invariant holds since the nodes after i are leaves;
+% after the step i = 0 one obtains is_p_heap(..)(0, n), that is,
+% is_heap (heapify_heapifies).
+%
+% TERMINATION AND TYPING. The recursion decreases i (MEASURE i).
+% The type restriction i <= floor(length(h)/2) - 1 ensures that i is
+% a node with children, and hence a valid position of h; note that
+% it requires length(h) >= 2, which is why heapsort only calls
+% heapify when length(h) > 1.
+heapify(h)(i : nat | i <= floor(length(h)/2) - 1) :  RECURSIVE finite_sequence[T] =
  IF i > 0 THEN heapify(sink(h)(i, length(h) - 1))(i - 1)
  ELSE sink(h)(i, length(h) -1) ENDIF
-MEASURE i 
+MEASURE i
+
+%%% 2.1 Basic properties: heapify preserves length and builds permutations
 
 heapify_length : LEMMA
  FORALL (h, (i: below[floor(length(h)/2)])) : length(heapify(h)(i)) = length(h)
@@ -77,31 +135,39 @@ heapify_length : LEMMA
 heapify_permutes : LEMMA
  FORALL (h, (i: below[floor(length(h)/2)])) : permutations(h,heapify(h)(i))
 
-heapify_heapifies : LEMMA 
-  FORALL (h | length(h) > 0 AND floor(length(h)/2) - 1 >=0 ) : 
-is_heap(heapify(h)(floor(length(h)/2) - 1)) 
+%%% 2.2 Heap property: heapify builds a heap
+
+heapify_heapifies : LEMMA
+  FORALL (h | length(h) > 0 AND floor(length(h)/2) - 1 >=0 ) :
+is_heap(heapify(h)(floor(length(h)/2) - 1))
 
 
-% Alternation of swaps and sinks to sort a heapified finite sequence  
-heapsort_aux(h)(n :below[length(h)]): RECURSIVE finite_sequence[T] =   
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%% 3. HEAPSORT_AUX
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Alternation of swaps and sinks to sort a heapified finite sequence
+heapsort_aux(h)(n :below[length(h)]): RECURSIVE finite_sequence[T] =
    IF n = 0 THEN h
    ELSIF n = 1 THEN swap(h)(0,1)
       ELSE heapsort_aux(sink(swap(h)(0,n))(0, n - 1))(n - 1)
-   ENDIF 
+   ENDIF
 MEASURE n
 
-heapsort_aux_permutes : LEMMA
-  FORALL (h, (n: below[length(h)])): 
-  permutations(h,heapsort_aux(h)(n))
+%%% 3.1 Basic properties: heapsort_aux preserves length and builds permutations
 
 heapsort_aux_length : LEMMA
   FORALL (h, (n: below[length(h)])) :
   	 length(heapsort_aux(h)(n)) = length(h)
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%% Heapsort_aux under adequate premisses partially sorts the sequence.
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-heapsort_aux_psorts : LEMMA 
+heapsort_aux_permutes : LEMMA
+  FORALL (h, (n: below[length(h)])):
+  permutations(h,heapsort_aux(h)(n))
+
+%%% 3.2 Sorting property: heapsort_aux, under adequate premises,
+%%%     sorts a partially sorted sequence whose prefix is a heap.
+
+heapsort_aux_psorts : LEMMA
  FORALL (h, (n : nat | n<length(h)-1)) :
          (psorted(h)(n+1,length(h)-1) AND
        	 is_p_heap(h)(0,n) AND
@@ -109,15 +175,19 @@ heapsort_aux_psorts : LEMMA
 	 => is_sorted?(heapsort_aux(h)(n))%(0,length(h) - 1)
 
 
-% Heapsort function  
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%% 4. HEAPSORT
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Heapsort function
 heapsort(h) : finite_sequence[T] =
- IF length(h) > 1 THEN 
+ IF length(h) > 1 THEN
    heapsort_aux(heapify(h)(floor(length(h)/2) - 1))(length(h)-1)
  ELSE h ENDIF
 
-% Correctness of heapsort
-heapsort_works : THEOREM 
+%%% 4.1 Correctness of heapsort: the output is sorted and is a
+%%%     permutation of the input.
+heapsort_works : THEOREM
  FORALL (h) : is_sorted?(heapsort(h)) AND permutations(h, heapsort(h))
 
 end heapsort
-
